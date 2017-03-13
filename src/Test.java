@@ -7,7 +7,7 @@ public class Test {
     public static void main(String[] args) {
         Random generator = new Random();
 
-        NeuralNetwork2 nn = new NeuralNetwork2(3, 4, 1, 0.05f, 10, 0.001f);
+        NeuralNetwork2 nn = new NeuralNetwork2(3, 2, 1, 0.05f, 1000, 0.1f);
 
         float P[][] = new float[][]{
             {-1, -1, 1},

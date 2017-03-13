@@ -80,7 +80,7 @@ public class NeuralNetwork2 {
                 analyze(P[p_i]);
 
                 for (int o_i = 0; o_i < outputSize; o_i++) {
-                    outputError[o_i] = (T[TEST][o_i] - outputValues[o_i]) * (1 - outputValues[o_i]);
+                    outputError[o_i] = (T[TEST][o_i] - outputValues[o_i]) * (1 - outputValues[o_i]) * outputValues[o_i];
                     for (int h_i = 0; h_i < hiddenSize; h_i++) {
                         outputWeights[o_i][h_i] += N * outputError[o_i] * hiddenValues[h_i];
                     }
@@ -89,8 +89,8 @@ public class NeuralNetwork2 {
                 for (int h_i = 0; h_i < hiddenSize; h_i++) {
                     for (int o_i = 0; o_i < outputSize; o_i++) {
                         for (int i_i = 0; i_i < inputSize; i_i++) {
-                            hiddenError[h_i] = outputError[o_i] * hiddenWeights[h_i][i_i] * input[i_i];
-                            hiddenWeights[h_i][i_i] += N * hiddenError[h_i] * input[i_i];
+                            hiddenError[h_i] = outputError[o_i] * outputWeights[o_i][h_i] * input[i_i];
+                            hiddenWeights[h_i][i_i] += N * hiddenError[h_i] * input[i_i] * (1 - input[i_i]);
                         }
                     }
                 }
